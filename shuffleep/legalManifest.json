@@ -1,0 +1,67 @@
+{
+  "$schema": "https://toapps.dev/legalManifest.schema.json",
+  "schemaVersion": 1,
+  "publishedAt": "2026-09-26T06:14:59Z",
+  "documents": {
+    "terms": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-09-19",
+      "effectiveDate": "2026-09-19",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。",
+          "2026-08-30: 免責・安全上の注意・規約の変更手続などを全面的に見直しました。",
+          "2026-09-19: 事業者情報と連絡先を更新し（氏名・電話番号は請求時開示）、責任の限定、法定の返金・救済、ストア別の更新・解約、EULA と消費者の権利を整理しました。 2026-09-22: Free の条件付き広告表示と、Premium 有効期間中の広告非表示を明記しました。"
+        ],
+        "en": [
+          "Initial version published.",
+          "Aug 30, 2026: Comprehensive update to disclaimers, safety notices, and the amendment process.",
+          "Sep 19, 2026: Updated business and contact information (the operator's name and telephone number are disclosed upon request), and clarified liability, statutory remedies, store-specific renewal and cancellation, the EULA and consumer rights. Sep 22, 2026: Clarified conditional ad display in Free and no ads while Premium is active."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/terms.html",
+        "en": "https://toapps.dev/shuffleep/en/terms.html"
+      }
+    },
+    "privacy": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-09-19",
+      "effectiveDate": "2026-09-19",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。",
+          "2026-08-30: 取得する情報・外部送信・お問い合わせ対応の記載を見直しました。",
+          "2026-09-19: 事業者情報と連絡先を更新し（氏名・電話番号は請求時開示）、配信キャッシュ、OS バックアップ、更新・問い合わせの処理、保存・削除を実装に合わせて整理しました。 2026-09-22: Google Mobile Ads の同意管理・初期化と条件付き非パーソナライズ広告、識別子・接続・操作・診断情報、目的・国外処理・保存削除を追記しました。独立した解析 SDK の不使用と広告 SDK 自体の測定・診断を区別しました。"
+        ],
+        "en": [
+          "Initial version published.",
+          "Aug 30, 2026: Updated descriptions of collected data, external transmissions, and inquiry handling.",
+          "Sep 19, 2026: Updated business and contact information (the operator's name and telephone number are disclosed upon request), and clarified delivery caches, OS backups, update and inquiry handling, retention and deletion. Sep 22, 2026: Added Google Mobile Ads consent management, initialization and conditional non-personalized ads; identifiers, connection, interaction and diagnostic information; purposes, overseas processing, retention and deletion. Distinguished the absence of separate analytics SDKs from the advertising SDK’s own measurement and diagnostics."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/privacy.html",
+        "en": "https://toapps.dev/shuffleep/en/privacy.html"
+      }
+    },
+    "sct": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-09-19",
+      "effectiveDate": "2026-09-19",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。",
+          "2026-08-30: 販売商品の明示を含め、返品特約・支払時期などの表示事項を見直しました。",
+          "2026-09-19: 販売事業者情報と連絡先を更新し（氏名・電話番号は請求時開示）、自動更新・解約と法定の返金・救済を整理しました。2026-09-22: Premium 機能に全メディテーション音声・カスタムワードセット・広告非表示が含まれる旨を明記しました。"
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/ja/sct.html"
+      }
+    }
+  }
+}
