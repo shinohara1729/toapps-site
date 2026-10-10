@@ -1,0 +1,57 @@
+{
+  "$schema": "https://toapps.dev/legalManifest.schema.json",
+  "schemaVersion": 1,
+  "publishedAt": "2026-10-10T10:30:00Z",
+  "documents": {
+    "terms": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-10-10",
+      "effectiveDate": "2026-10-10",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。"
+        ],
+        "en": [
+          "Initial version published."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/terms.html",
+        "en": "https://toapps.dev/shuffleep/en/terms.html"
+      }
+    },
+    "privacy": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-10-10",
+      "effectiveDate": "2026-10-10",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。"
+        ],
+        "en": [
+          "Initial version published."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/privacy.html",
+        "en": "https://toapps.dev/shuffleep/en/privacy.html"
+      }
+    },
+    "sct": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-10-10",
+      "effectiveDate": "2026-10-10",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。"
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/ja/sct.html"
+      }
+    }
+  }
+}

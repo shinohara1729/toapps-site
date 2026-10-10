@@ -1,0 +1,9 @@
+title: TO Apps
+description: モバイルアプリケーションの開発・販売を行う個人事業者 TO Apps の公式サイト。提供アプリの案内と、利用規約・プライバシーポリシー・特定商取引法に基づく表示を掲載しています。
+lang: ja
+markdown: kramdown
+exclude:
+  - README.md
+  - node_modules
+  - vendor
+  - .gitignore
