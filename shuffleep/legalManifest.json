@@ -1,0 +1,63 @@
+{
+  "$schema": "https://toapps.dev/legalManifest.schema.json",
+  "schemaVersion": 1,
+  "publishedAt": "2026-11-14T15:07:00Z",
+  "documents": {
+    "terms": {
+      "latestRevision": 2,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-11-15",
+      "effectiveDate": "2026-11-15",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。",
+          "返金・値上げ・規約の変更・裁判管轄などの定めを利用者に有利な形に見直し、事業者の情報を載せました。"
+        ],
+        "en": [
+          "Initial version published.",
+          "Revised the provisions on refunds, price increases, changes to these Terms and jurisdiction in users' favor, and added the Operator's business information."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/terms.html",
+        "en": "https://toapps.dev/shuffleep/en/terms.html"
+      }
+    },
+    "privacy": {
+      "latestRevision": 3,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-11-15",
+      "effectiveDate": "2026-11-15",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。",
+          "13 歳未満と判定した場合に、判定したことと日時だけを端末に保存することを記載しました。",
+          "オーストラリア・ニュージーランド・シンガポールの個人情報保護の法令に合わせ、国外の移転先と国、開示等の請求への回答の期限、漏えい等の通知、相談先などを記載しました。"
+        ],
+        "en": [
+          "Initial version published.",
+          "Added that, if a user is determined to be under 13, only that determination and its date and time are stored on the device.",
+          "Added details in line with Australian, New Zealand and Singapore privacy laws, including overseas recipients and their countries, response times for access requests, data breach notification and where to make complaints."
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/shuffleep/ja/privacy.html",
+        "en": "https://toapps.dev/shuffleep/en/privacy.html"
+      }
+    },
+    "sct": {
+      "latestRevision": 1,
+      "minRequiredRevision": 1,
+      "versionDate": "2026-10-10",
+      "effectiveDate": "2026-10-10",
+      "changeSummary": {
+        "ja": [
+          "初版を公開しました。"
+        ]
+      },
+      "urls": {
+        "ja": "https://toapps.dev/ja/sct.html"
+      }
+    }
+  }
+}
