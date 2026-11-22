@@ -1,0 +1,394 @@
+/* Shuffleep 紹介ページ（日本語・英語・入口で共有） */
+
+@font-face { font-family: "Manrope LP"; font-weight: 600; font-display: swap; src: url("fonts/manrope-600.woff2") format("woff2"); unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Manrope LP"; font-weight: 700; font-display: swap; src: url("fonts/manrope-700.woff2") format("woff2"); unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Inter LP"; font-weight: 400; font-display: swap; src: url("fonts/inter-400.woff2") format("woff2"); unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+20AC, U+2122, U+2212; }
+@font-face { font-family: "Inter LP"; font-weight: 500; font-display: swap; src: url("fonts/inter-500.woff2") format("woff2"); unicode-range: U+0020-007E, U+00A0-00FF, U+2000-206F, U+20AC, U+2122, U+2212; }
+
+:root {
+  color-scheme: dark;
+  --dusk: #222b57;
+  --night: #1a1a2e;
+  --inset: #131525;
+  --deep: #0b1024;
+  --ink: #f4f6fb;
+  --mist: #b9c0d4;
+  --muted: #8e96ae;
+  --lapis: #9bb8ff;
+  --lapis-fill: #6b8cce;
+  --ember: #e8c594;
+  --line: #ffffff14;
+  --ja: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic UI", Meiryo, system-ui, sans-serif;
+  --f-head: "Manrope LP", var(--ja);
+  --f-body: "Inter LP", var(--ja);
+  --gutter: 20px;
+  --wide: 1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--deep); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font: 400 1rem/1.75 var(--f-body);
+  /* スクロールするほど夜が深くなる。短いページ（入口）では 62% と 100% の停止位置が前の停止位置に詰められ、最下部で色が急に変わるので、
+     それぞれ 1600px・2400px を下限にする（ページより下に来た分は描かれず、最下部は途中の色で終わる。長いページの見た目は変わらない） */
+  background: linear-gradient(180deg, var(--dusk) 0, #1d2149 520px, var(--night) 1400px, #15172b max(62%, 1600px), var(--deep) max(100%, 2400px));
+  overflow-x: hidden;
+}
+:lang(en) body, body:lang(en) { line-height: 1.65; }
+img, svg { display: block; max-width: 100%; }
+a { color: var(--lapis); text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--lapis); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-head); margin: 0; letter-spacing: 0; text-wrap: balance; }
+/* 和文の見出しと短い文（問い・項目名・ボタン）は、句の境目で折り返す（Chrome 119 以降。ほかのブラウザはふつうの和文の折り返し）。
+   句が 1 行より長くなるところは、HTML の <wbr aria-hidden="true"> で句の中の折り目を示してある
+   （aria-hidden が無いと、Chrome は読み上げ名の <wbr> の位置に空白を入れる） */
+:lang(ja) h1, :lang(ja) h2, :lang(ja) h3, :lang(ja) figcaption, :lang(ja) .compare th,
+:lang(ja) .faq summary, :lang(ja) dt, :lang(ja) .go { word-break: auto-phrase; line-break: strict; }
+/* 締めの一文は <wbr> の位置でだけ折る（auto-phrase は「ひととき」の途中で折るため） */
+:lang(ja) .closing p { word-break: keep-all; }
+/* 文字を大きくしたとき、収まらない語だけを途中で折り返す（はみ出して切れるのを防ぐ）。比較表は語の途中で折らず、収まらない幅では並べ方を変える */
+h1, h2, h3, figcaption, a[href^="mailto:"] { overflow-wrap: anywhere; }
+p { margin: 0; }
+
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+/* 文字を大きくしてリンクが高くなっても上に隠れたままにする（高さに依らず、自分の高さの 1.5 倍ぶん上へずらす） */
+.skip { position: absolute; left: 12px; top: 0; padding: 10px 14px; background: var(--inset); border-radius: 8px; z-index: 10; transform: translateY(-150%); }
+.skip:focus { top: 12px; transform: none; }
+
+/* ヘッダー */
+.site-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; max-width: var(--wide); margin: 0 auto; padding: 14px var(--gutter); }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--ink); text-decoration: none; font: 700 min(1.125rem, 6vw)/1 "Manrope LP", sans-serif; }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.lang-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; font-size: 0.9375rem; }
+
+/* ヒーロー: 夜空と、ひとつずつ現れる単語 */
+.sky {
+  position: relative;
+  overflow: hidden;
+  height: clamp(200px, 28vh, 260px);
+  background:
+    radial-gradient(1.4px 1.4px at 8% 18%, #e8edffcc 50%, transparent 51%),
+    radial-gradient(1px 1px at 21% 52%, #e8edff99 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 34% 12%, #e8edffaa 50%, transparent 51%),
+    radial-gradient(1px 1px at 47% 30%, #e8edff80 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 63% 9%, #e8edffcc 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 44%, #e8edff80 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 84% 22%, #e8edffaa 50%, transparent 51%),
+    radial-gradient(1px 1px at 93% 58%, #e8edff99 50%, transparent 51%),
+    radial-gradient(1px 1px at 4% 64%, #e8edff80 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 56% 62%, #e8edff66 50%, transparent 51%);
+}
+.moon { position: absolute; top: 20px; right: max(var(--gutter), calc((100% - var(--wide)) / 2 + var(--gutter))); width: 22px; height: 22px; color: var(--ink); opacity: 0.85; }
+.stage { position: absolute; inset: 0 0 56px; display: grid; place-items: center; -webkit-user-select: none; user-select: none; }
+.word {
+  grid-area: 1 / 1;
+  /* 文字を大きくしても画面の幅に収める（飾りの単語なので幅で上限を決める） */
+  font: 600 min(clamp(2.5rem, 11vw, 4.5rem), 13vw)/1.2 var(--f-head);
+  letter-spacing: 0.12em;
+  margin-right: -0.12em;
+  color: var(--ink);
+  opacity: 0;
+  animation: drift 20s linear infinite both;
+}
+.word:nth-child(2) { animation-delay: 4s; }
+.word:nth-child(3) { animation-delay: 8s; }
+.word:nth-child(4) { animation-delay: 12s; }
+.word:nth-child(5) { animation-delay: 16s; }
+@keyframes drift {
+  0% { opacity: 0; transform: translateY(0.25em); filter: blur(6px); }
+  6% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  16% { opacity: 1; transform: translateY(-0.04em); filter: blur(0); }
+  22% { opacity: 0; transform: translateY(-0.18em); filter: blur(5px); }
+  100% { opacity: 0; transform: translateY(-0.18em); filter: blur(5px); }
+}
+.horizon { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64px; }
+.horizon path { vector-effect: non-scaling-stroke; fill: none; stroke: var(--ink); stroke-linecap: round; }
+.ember { position: absolute; left: 50%; bottom: 12px; width: 140px; height: 48px; transform: translateX(-50%); background: radial-gradient(closest-side, #e8c59466, #e8c59414 55%, transparent); pointer-events: none; }
+.ember::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: var(--ember); }
+
+/* 単語の動きを止める（JavaScript なしのチェックボックス） */
+.pause-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.pause {
+  position: absolute; right: max(var(--gutter), calc((100% - var(--wide)) / 2 + var(--gutter))); bottom: 66px;
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 2px;
+  color: var(--muted); font: 500 0.75rem/1 var(--f-body); letter-spacing: 0.02em; cursor: pointer; user-select: none;
+}
+.pause::before { content: ""; width: 11px; height: 11px; border: 1px solid var(--muted); border-radius: 3px; }
+/* 止めたら最初の単語をくっきり出す（途中で止めると、ぼけたまま重なって止まるため） */
+.pause-toggle:checked ~ .stage .word { animation: none; opacity: 0; }
+.pause-toggle:checked ~ .stage .word:first-child { opacity: 1; }
+.pause-toggle:checked ~ .pause { color: var(--lapis); }
+.pause-toggle:checked ~ .pause::before { border-color: var(--lapis); background: var(--lapis-fill) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%231a1a2e' stroke-width='1.6'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.pause-toggle:focus-visible ~ .pause { outline: 2px solid var(--lapis); outline-offset: 3px; }
+
+/* ヒーローの本文と画面 */
+.hero-body { max-width: var(--wide); margin: 0 auto; padding: 28px var(--gutter) 8px; }
+/* スマホでは 3 行まで許し、節の見出し（h2）より一段大きくする */
+.hero h1 { font-size: clamp(1.75rem, 7.2vw, 2.375rem); line-height: 1.45; font-weight: 700; }
+/* 英語の見出しは 1 語が長い（Bedtime）。文字を大きくしても、その語が画面の幅に収まる大きさで止める */
+:lang(en) .hero h1 { line-height: 1.15; font-size: min(clamp(2.25rem, 10vw, 3.5rem), 20vw); }
+.lead { margin-top: 18px; max-width: 34rem; color: var(--mist); font-size: 1.0625rem; }
+.badge { display: inline-block; margin: 26px 0 16px; border-radius: 9px; }
+.badge img { height: 56px; width: auto; }
+.avail { color: var(--mist); font-size: 0.875rem; max-width: 34rem; }
+/* 文字を大きくしたときは、画面の幅が許す範囲で、写真の下の文のいちばん長い語が収まる幅（1 列 8.4 字ぶん）まで広げる */
+.hero-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: max(420px, 14.7rem + 16px); margin-top: 40px; }
+.hero-shots .shot:nth-child(2) { margin-top: 44px; }
+/* 背の低いスマホ: 最初のバッジまでを 1 画面に収めるため、夜空とヒーローの余白を縮める。
+   夜空の中は、単語を上へ、止める切り替えをその下へ寄せ、地平線を低くして、互いに重ならないようにする */
+@media (max-width: 959px) and (max-height: 700px) {
+  .site-head:not(.site-head--entry) { padding-block: 8px; }
+  .hero .sky { height: clamp(144px, 25vh, 172px); height: clamp(144px, 25svh, 172px); }
+  .hero .moon { top: 12px; }
+  .hero .stage { bottom: 64px; }
+  .hero .pause { bottom: 34px; }
+  .hero .horizon { height: 40px; }
+  .hero .ember { bottom: 4px; height: 36px; }
+  .hero-body { padding-top: 18px; }
+  .hero .lead { margin-top: 12px; }
+  .hero .badge { margin-top: 18px; }
+}
+/* 幅 359px 以下の背の低い画面: 長い単語（lighthouse など）の右上が月に接しないよう、月を小さくし、
+   単語は文字を大きくしても文字 100% のときの大きさで止める（幅 360 以上と同じくらいの間をあける） */
+@media (max-width: 359px) and (max-height: 700px) {
+  .hero .moon { top: 8px; width: 18px; height: 18px; }
+  .hero .word { font-size: min(clamp(2.5rem, 11vw, 4.5rem), 12.5vw); }
+}
+
+.shot { margin: 0; }
+.shot img { width: 100%; height: auto; aspect-ratio: 9 / 20; border-radius: 9% / 4%; border: 1px solid var(--line); background: var(--inset); }
+.shot figcaption { margin-top: 12px; color: var(--mist); font-size: 0.875rem; line-height: 1.55; text-wrap: balance; }
+
+/* セクション */
+.sec { max-width: var(--wide); margin: 0 auto; padding: 72px var(--gutter) 0; }
+.sec h2 { font-size: clamp(1.375rem, 5.6vw, 2rem); line-height: 1.4; font-weight: 700; margin-bottom: 20px; }
+:lang(en) .sec h2 { line-height: 1.2; }
+.sec h3 { font-size: 1.1875rem; line-height: 1.5; font-weight: 600; }
+.prose { max-width: 34rem; }
+.prose p + p { margin-top: 14px; }
+.prose .quiet, .quiet { color: var(--mist); }
+.prose .source { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--mist); font-size: 0.875rem; line-height: 1.75; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 420px; }
+/* 文字を大きくしたときは、写真の下の文のいちばん長い語（メディテーション）が収まる幅（文字 8.4 字ぶん）まで列を広げる */
+.figs--one { grid-template-columns: minmax(0, max(200px, 7.35rem)); justify-content: center; margin-inline: auto; }
+/* 和文の見出しは、いちばん長い語（「メディテーション」の 8 字。流れの見出しは前の番号を足して約 9 字）が列の幅に収まる大きさを上限にする。
+   文字を大きくしたときだけ効き、本文の大きさ（1rem）は下回らない */
+.split > div:not(.figs), .timeline { container-type: inline-size; }
+:lang(ja) .split h2 { font-size: max(1rem, min(clamp(1.375rem, 5.6vw, 2rem), 100cqi / 8.4)); }
+:lang(ja) .timeline h3 { font-size: max(1rem, min(1.1875rem, (100cqi - 64px) / 9.2)); }
+
+/* 認知シャッフルの例 */
+.examples { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2em 0.9em; margin: 8px 0 28px; font: 600 clamp(1.75rem, 8vw, 4.5rem)/1.3 var(--f-head); letter-spacing: 0.08em; }
+:lang(en) .examples { font-size: clamp(1.625rem, 7vw, 4.5rem); letter-spacing: 0.04em; gap: 0.2em 0.7em; }
+:lang(en) .word { letter-spacing: 0.06em; margin-right: -0.06em; }
+.examples span:nth-child(2) { opacity: 0.62; }
+.examples span:nth-child(3) { opacity: 0.34; }
+@media (min-width: 960px) {
+  /* PC: 説明を左、例の単語を右の列に置き、一語ずつずらして並べる */
+  .sec--method { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); grid-template-areas: "title words" "prose words"; column-gap: 64px; }
+  .sec--method > h2 { grid-area: title; }
+  .sec--method > .prose { grid-area: prose; }
+  /* 節の幅は 1080px で止まるので、文字の上限も幅 1280 のときの値（69px）で止める（文字を大きくしても「ランタン」が列に収まる） */
+  .sec--method > .examples { grid-area: words; align-self: center; flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 0.1em; margin: 0; font-size: min(clamp(2.5rem, 5vw, 4rem), 5.4vw, 69px); }
+  .sec--method > .examples span:nth-child(2) { margin-left: 1em; }
+  .sec--method > .examples span:nth-child(3) { margin-left: 2em; }
+}
+
+/* セッションの流れ（終わりに向かって線が消えていく） */
+.timeline { position: relative; margin: 32px 0 0; padding: 0; list-style: none; max-width: 34rem; }
+.timeline::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 0; width: 1px; background: linear-gradient(#b9c0d466, #b9c0d433 78%, transparent); }
+.timeline li { position: relative; padding: 0 0 30px 64px; }
+.node { position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--inset); border: 1px solid var(--line); color: var(--lapis); }
+.node svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.timeline li:last-child .node { color: var(--mist); background: transparent; border-style: dashed; }
+.timeline h3 { padding-top: 8px; }
+.timeline h3 .num { font-family: "Manrope LP", sans-serif; color: var(--muted); margin-right: 0.5em; }
+.timeline p { color: var(--mist); margin-top: 4px; }
+.after-flow { margin-top: 8px; max-width: 34rem; color: var(--mist); }
+
+/* 体験動画（セッションの流れの後）。自動では再生せず、標準の再生ボタンで音つきで再生する。
+   音が出ることの注記は動画の上に置く。注記と動画を 1 画面に収めるため、背の低い画面では動画を縮める（操作できる幅 200px は保つ）。
+   注記は動画の幅に縛らず、文字を大きくしたときは節の幅まで使う */
+.teaser { display: grid; justify-items: center; gap: 12px; margin: 56px 0 0; }
+/* 長さ（ja「（約 30 秒）。」・en「30 seconds).」）は HTML の &nbsp; で途中で折らない（white-space: nowrap にすると Chrome は行頭の括弧を詰めない）。
+   文字を大きくして「（約 30 秒）。」が行頭に来たときは、開き括弧の前の空きを詰める */
+.teaser figcaption { display: flex; align-items: flex-start; gap: 0.5em; color: var(--mist); font-size: 0.875rem; line-height: 1.6; text-spacing-trim: trim-start; }
+/* 印は文字の大きさに合わせ、1 行目の中ほどに置く */
+.teaser figcaption svg { flex: none; width: 1.25em; height: 1.25em; margin-top: 0.175em; fill: none; stroke: var(--lapis); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.teaser video {
+  width: min(100%, max(200px, min(300px, (100vh - 4rem - 24px) * 9 / 16)));
+  width: min(100%, max(200px, min(300px, (100svh - 4rem - 24px) * 9 / 16)));
+  height: auto; aspect-ratio: 9 / 16; border: 1px solid var(--line); border-radius: 20px; background: var(--inset);
+}
+
+/* テーマ */
+.themes { list-style: none; margin: 16px 0 24px; padding: 0; font: 600 clamp(1.25rem, 5.1vw, 1.75rem)/1.7 var(--f-head); }
+.themes li:last-child { color: var(--mist); font-weight: 400; font-size: 0.75em; margin-top: 6px; line-height: 1.6; }
+.features { display: grid; gap: 0; margin: 0; }
+.features div { padding: 13px 0; border-top: 1px solid var(--line); }
+.features dt { font-weight: 500; }
+.features dd { margin: 2px 0 0; color: var(--mist); font-size: 0.9375rem; line-height: 1.65; }
+
+/* 無料版と Premium */
+.compare { width: 100%; max-width: 40rem; border-collapse: collapse; font-size: 0.875rem; margin-top: 8px; }
+.compare th, .compare td { text-align: left; vertical-align: top; padding: 12px 8px 12px 0; border-bottom: 1px solid var(--line); }
+.compare thead th { color: var(--mist); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.02em; }
+.compare thead th:last-child { color: var(--ember); }
+.compare tbody th { font-weight: 500; width: 44%; }
+.compare td { color: var(--mist); width: 28%; }
+/* 和文の値は <wbr> の位置でだけ折り返す（「クイック導入」を「クイック／導入」で折る） */
+:lang(ja) .compare td { word-break: keep-all; }
+/* 3 列に収まらない幅（狭い画面・文字を大きくしたとき）: 機能の名前を 1 行に置き、その下に無料版と Premium を並べる */
+.price-compare { container-type: inline-size; }
+@container (max-width: 18rem) {
+  .compare tr { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+  .compare th, .compare td { border-bottom: 0; }
+  .compare tbody th, .compare td { width: auto; }
+  .compare thead th:first-child { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); }
+  .compare tbody th { grid-column: 1 / -1; padding-bottom: 2px; }
+  .compare tbody td { padding-top: 2px; }
+}
+.compare td:last-child { color: var(--ink); }
+.prices { display: grid; gap: 0; margin: 36px 0 0; max-width: 40rem; }
+.prices div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.prices dt { color: var(--mist); }
+.prices .cycle { display: block; margin-top: 2px; font-size: 0.8125rem; color: var(--muted); }
+/* 価格が下の行に折り返しても右端に寄せ、価格と「月あたり」の 2 行の右端を揃える */
+.prices dd { margin: 0 0 0 auto; font: 600 1.375rem/1.3 "Manrope LP", var(--ja); text-align: right; }
+.prices small { font: 400 0.8125rem/1 var(--f-body); color: var(--mist); margin-left: 4px; }
+.prices .per { display: block; margin-top: 4px; font: 400 0.8125rem/1.4 var(--f-body); color: var(--mist); }
+.terms-key { margin: 20px 0 0; padding: 0 0 0 1.1em; max-width: 40rem; color: var(--ink); }
+.terms-key li { padding: 3px 0; }
+.notes { margin: 18px 0 0; padding: 0 0 0 1.1em; max-width: 40rem; color: var(--mist); font-size: 0.875rem; line-height: 1.7; }
+.notes li + li { margin-top: 6px; }
+
+/* よくある質問 */
+.faq { max-width: 40rem; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; padding: 12px 0; cursor: pointer; font-weight: 500; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; flex: none; width: 10px; height: 10px; margin-right: 4px; border-right: 1.5px solid var(--mist); border-bottom: 1.5px solid var(--mist); transform: translateY(-3px) rotate(45deg); transition: transform 0.2s ease; }
+.faq details[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+.faq details p { padding: 0 0 18px; color: var(--mist); }
+
+/* 医療に関するご注意 */
+.notice p { max-width: 40rem; color: var(--mist); font-size: 0.9375rem; }
+.notice h2 { font-size: 1.25rem; margin-bottom: 10px; }
+
+/* 締めとフッター */
+.closing { max-width: var(--wide); margin: 0 auto; padding: 80px var(--gutter) 24px; }
+.closing .brand { font-size: 1.375rem; }
+.closing .brand img { width: 48px; height: 48px; border-radius: 12px; }
+.closing p { margin-top: 14px; color: var(--mist); }
+.site-foot { max-width: var(--wide); margin: 0 auto; padding: 40px var(--gutter) 56px; color: var(--muted); font-size: 0.8125rem; line-height: 1.7; }
+.site-foot ul { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 0 20px; font-size: 0.875rem; }
+.site-foot li a { display: inline-flex; align-items: center; min-height: 44px; }
+.site-foot p + p { margin-top: 6px; }
+.site-foot .foot-rule { border-top: 1px solid var(--line); padding-top: 20px; }
+
+/* 入口: 冒頭の言語の切り替え → 名前 → 夜空 → 日英の紹介（スマホは最初のバッジまでを 1 画面に収める） */
+.site-head--entry { justify-content: flex-end; padding-block: 6px; }
+.entry-langs { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 0.9375rem; }
+.entry-langs a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; }
+.entry-hero { max-width: var(--wide); margin: 0 auto; padding: 4px var(--gutter) 0; }
+.entry-hero h1 { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: min(clamp(2rem, 9vw, 3.25rem), 11vw); line-height: 1.1; }
+.entry-hero h1 img { width: 48px; height: 48px; border-radius: 12px; }
+/* 単語の大きさ（--w）に合わせて夜空を高くし、文字を大きくしても単語どうしが重ならないようにする。
+   単語の top（%）は、単語を置く枠（.field）の高さが単語の 3.78 倍のときでも、上下に並ぶ単語の間が約 0.5 語ぶん空くように置いてある */
+.sky.sky--static { --w: min(1.125rem, 5.2vw); height: max(104px, calc(36px + 3.78 * var(--w))); margin-top: 8px; }
+.sky--static .field { position: absolute; top: 0; bottom: 36px; left: max(var(--gutter), calc((100% - var(--wide)) / 2 + var(--gutter))); right: max(var(--gutter), calc((100% - var(--wide)) / 2 + var(--gutter))); }
+.sky--static .horizon { height: 40px; }
+.sky--static .ember { bottom: 4px; height: 36px; }
+.sky--static span { -webkit-user-select: none; white-space: nowrap; user-select: none; position: absolute; font: 600 var(--w)/1 var(--f-head); letter-spacing: 0.08em; color: var(--ink); }
+.langs { display: grid; gap: 0; max-width: var(--wide); margin: 0 auto; padding: 0 var(--gutter); }
+.langs section { padding: 32px 0; }
+.langs section:first-child { padding-top: 20px; }
+.langs section + section { border-top: 1px solid var(--line); }
+.langs h2 { font-size: 1.375rem; line-height: 1.4; }
+.langs p { margin-top: 12px; color: var(--mist); max-width: 30rem; }
+.go { display: inline-flex; align-items: center; min-height: 44px; margin-top: 18px; padding: 0 18px; border-radius: 12px; background: #6b8cce2e; color: var(--lapis); font-weight: 500; text-decoration: none; }
+.go:hover { background: #6b8cce40; }
+.actions { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; margin-top: 20px; }
+.actions .go, .actions .badge { margin: 0; }
+.legal { max-width: var(--wide); margin: 0 auto; padding: 48px var(--gutter) 0; }
+.legal h2 { font-size: 1.25rem; margin-bottom: 12px; }
+.legal ul { margin: 0; padding: 0 0 0 1.1em; }
+.legal li { padding: 8px 0; }
+.legal .quiet { margin-top: 20px; font-size: 0.875rem; }
+
+@media (min-width: 760px) {
+  :root { --gutter: 40px; }
+  .split { grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: start; }
+  .split--wide-fig { grid-template-columns: minmax(0, 1fr) 300px; }
+  .figs--one { grid-template-columns: minmax(0, 250px); }
+  /* 「テーマと音」だけ写真を左に置き、文が左・写真が右の節が続かないようにする（スマホは文 → 写真の順のまま） */
+  .split--fig-left { grid-template-columns: 300px minmax(0, 1fr); }
+  .split--fig-left > .figs { grid-column: 1; grid-row: 1; }
+  .features { grid-template-columns: 1fr 1fr; column-gap: 40px; }
+  .langs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+  .entry-hero { padding-top: 16px; }
+  .entry-hero h1 { gap: 16px; }
+  .entry-hero h1 img { width: 64px; height: 64px; border-radius: 16px; }
+  .sky.sky--static { height: max(180px, calc(64px + 3.78 * var(--w))); }
+  .sky--static .field { bottom: 64px; }
+  .sky--static .horizon { height: 64px; }
+  .sky--static .ember { bottom: 12px; height: 48px; }
+  .langs section:first-child { padding-top: 32px; }
+  .langs section + section { border-top: 0; }
+  .langs h2 { font-size: 1.5rem; }
+}
+@media (min-width: 960px) {
+  .split--wide-fig { grid-template-columns: minmax(0, 1fr) 420px; }
+  .sec--aside { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 64px; align-items: start; }
+  .sec--aside > h2 { margin-top: 6px; }
+  /* 左の列は 300px で一定。文字を大きくしても、見出しの語（Questions）が列に収まる大きさで止める */
+  .sec--aside:not(.notice) > h2 { font-size: min(clamp(1.375rem, 5.6vw, 2rem), 56px); }
+  .sky { height: clamp(220px, 34vh, 380px); }
+  .stage { bottom: 64px; }
+  .hero-body { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 56px; padding-top: 40px; }
+  .hero-shots { margin-top: 0; }
+  .sec { padding-top: 120px; }
+  .teaser { margin-top: 80px; }
+  .closing { padding-top: 104px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word { animation: none; }
+  .word:first-child { opacity: 1; }
+  .pause-toggle, .pause { display: none; }
+  .faq summary::after { transition: none; }
+}
+
+/* 追加の部品 */
+.sec .plus-title { margin-top: 32px; font-size: 1.0625rem; }
+.table-note { margin-top: 12px; max-width: 40rem; color: var(--mist); font-size: 0.875rem; line-height: 1.7; }
+.badge--after { margin: 32px 0 0; }
+/* 「テーマと音」の一覧の後のバッジ: 一覧の下の余白（24px）と合わせて、料金の節と同じ 32px にする */
+.themes + .badge--after { margin-top: 8px; }
+.tag { display: inline-block; margin-left: 0.6em; padding: 1px 8px; border: 1px solid #e8c59466; border-radius: 999px; color: var(--ember); font: 500 0.75rem/1.5 var(--f-body); letter-spacing: 0.02em; vertical-align: 0.15em; }
+.features.features--plain { grid-template-columns: 1fr; margin-top: 8px; }
+.after-list { margin-top: 18px; }
+.plus-title + .prices { margin-top: 8px; }
+
+/* 料金の節: 比較表と注記 → 画面写真 → 料金と条件 → バッジ（スマホ）。PC は写真を右の列に置く */
+.split--price { grid-template-areas: "compare" "fig" "plans"; }
+.price-compare { grid-area: compare; }
+.split--price > .figs { grid-area: fig; }
+.price-plans { grid-area: plans; }
+.price-plans .plus-title { margin-top: 0; }
+@media (min-width: 760px) {
+  .split--price { grid-template-rows: auto 1fr; grid-template-areas: "compare fig" "plans fig"; row-gap: 32px; }
+}
+/* 右の列は写真 1 枚で、左の列（比較表 → 料金と条件）よりずっと短い。読み進めるあいだ写真を画面に残し、左の列の横を空けない。
+   写真が画面に収まらない背の低い画面（文字を大きくした設定では基準も大きくなる）では固定しない */
+@media (min-width: 760px) and (min-height: 40em) {
+  .split--price > .figs { position: sticky; top: 24px; align-self: start; }
+}
+
+/* フッタの日英の組（入口）: 組と組の間を少し空ける */
+.foot-rule p[lang="en"] + p { margin-top: 14px; }

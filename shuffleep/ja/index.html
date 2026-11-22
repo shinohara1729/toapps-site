@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shuffleep（シャッフリープ）｜認知シャッフル睡眠法の入眠アプリ</title>
+<meta name="description" content="眠れない夜に、言葉のシャッフルで考えごとから離れるきっかけを。短いメディテーションから、ランダムな単語をひとつずつ読み上げる「ワードシャッフル」へつなぐ入眠アプリです。">
+<link rel="canonical" href="https://toapps.dev/shuffleep/ja/">
+<link rel="alternate" hreflang="ja" href="https://toapps.dev/shuffleep/ja/">
+<link rel="alternate" hreflang="en" href="https://toapps.dev/shuffleep/en/">
+<link rel="alternate" hreflang="x-default" href="https://toapps.dev/shuffleep/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Shuffleep">
+<meta property="og:title" content="Shuffleep（シャッフリープ）｜認知シャッフル睡眠法の入眠アプリ">
+<meta property="og:description" content="眠れない夜に、言葉のシャッフルで考えごとから離れるきっかけを。短いメディテーションから、ランダムな単語をひとつずつ読み上げる「ワードシャッフル」へつなぎます。">
+<meta property="og:url" content="https://toapps.dev/shuffleep/ja/">
+<meta property="og:image" content="https://toapps.dev/assets/shuffleep/lp/img/og-ja.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="夜の水平線に浮かぶ灯台の線画、Shuffleep の名前と「眠れない夜に、考えごとから離れるきっかけを」の文字">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shuffleep（シャッフリープ）｜認知シャッフル睡眠法の入眠アプリ">
+<meta name="twitter:description" content="眠れない夜に、言葉のシャッフルで考えごとから離れるきっかけを。短いメディテーションから、ランダムな単語をひとつずつ読み上げる「ワードシャッフル」へつなぎます。">
+<meta name="twitter:image" content="https://toapps.dev/assets/shuffleep/lp/img/og-ja.jpg">
+<meta name="twitter:image:alt" content="夜の水平線に浮かぶ灯台の線画、Shuffleep の名前と「眠れない夜に、考えごとから離れるきっかけを」の文字">
+<meta name="theme-color" content="#222b57">
+<link rel="icon" href="/assets/shuffleep/lp/img/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/shuffleep/lp/img/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/shuffleep/lp/img/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/shuffleep/lp/img/apple-touch-icon.png">
+<link rel="preload" href="/assets/shuffleep/lp/fonts/manrope-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/shuffleep/lp/lp.css?v=2">
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header class="site-head">
+  <a class="brand" href="/shuffleep/"><img src="/assets/shuffleep/lp/img/icon-96.png" alt="" width="96" height="96">Shuffleep</a>
+  <a class="lang-link" href="/shuffleep/en/" hreflang="en" lang="en">English</a>
+</header>
+
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="sky">
+    <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z" fill="currentColor"/></svg>
+    <input class="pause-toggle" type="checkbox" id="pause-words">
+    <div class="stage" aria-hidden="true">
+      <span class="word">どんぐり</span>
+      <span class="word">ビー玉</span>
+      <span class="word">灯台</span>
+      <span class="word">毛布</span>
+      <span class="word">ハリネズミ</span>
+    </div>
+    <p class="vh">セッション中は、画面にランダムな単語がひとつずつ表示されます（例: どんぐり、ビー玉、灯台、毛布、ハリネズミ）。</p>
+    <label class="pause" for="pause-words">単語の動きを止める</label>
+    <div class="ember" aria-hidden="true"></div>
+    <svg class="horizon" viewBox="0 0 1200 64" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 30 Q150 18 300 30 T600 30 T900 30 T1200 30" stroke-width="1.4" stroke-opacity=".5"/>
+      <path d="M60 44 Q240 34 420 44 T780 44 T1140 44" stroke-width="1.1" stroke-opacity=".3"/>
+      <path d="M160 56 Q400 50 640 56 T1100 56" stroke-width="1" stroke-opacity=".16"/>
+    </svg>
+  </div>
+
+  <div class="hero-body">
+    <div class="hero-text">
+      <h1 id="hero-title">眠れない夜に、<br>考えごと<wbr aria-hidden="true">から離れるきっかけを</h1>
+      <p class="lead">Shuffleep（シャッフリープ）は、眠る前のひとときに使うアプリです。短いメディテーションから始めて、ランダムな単語をひとつずつ読み上げる「ワードシャッフル」へつなげます。</p>
+      <a class="badge" href="https://play.google.com/store/apps/details?id=com.shinohara.shuffleep&amp;referrer=utm_source%3Dlp%26utm_campaign%3Dlaunch"><img src="/assets/shuffleep/lp/img/badge-google-play-ja.png" alt="Shuffleep のストアページを開く" width="646" height="192"></a>
+      <p class="avail">ダウンロードは無料で、Premium は月額・年額の定期購入です。アカウントの登録は要りません。iPhone・iPad には対応していません。</p>
+    </div>
+    <div class="hero-shots">
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/01-playing-word-640.webp" srcset="/assets/shuffleep/lp/img/ja/01-playing-word-360.webp 360w, /assets/shuffleep/lp/img/ja/01-playing-word-640.webp 640w" sizes="(min-width: 960px) 182px, 44vw" width="640" height="1315" fetchpriority="high" alt="雨のテラスの再生画面。水辺にラッコの白い線画が浮かぶ">
+        <figcaption>メディテーション<wbr aria-hidden="true">から、単語へ</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/02-playing-word-forest-640.webp" srcset="/assets/shuffleep/lp/img/ja/02-playing-word-forest-360.webp 360w, /assets/shuffleep/lp/img/ja/02-playing-word-forest-640.webp 640w" sizes="(min-width: 960px) 182px, 44vw" width="640" height="1315" alt="森のそよ風の再生画面。一本の線が小屋と水車の形になる">
+        <figcaption>ランダムな単語を、声で<wbr aria-hidden="true">ひとつ<wbr aria-hidden="true">ずつ</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--method" id="method" aria-labelledby="h-method">
+  <h2 id="h-method">認知<wbr aria-hidden="true">シャッフル<wbr aria-hidden="true">睡眠法とは</h2>
+  <p class="examples" aria-hidden="true"><span>りんご</span><span>ランタン</span><span>波</span></p>
+  <div class="prose">
+    <p>眠る前に、互いに関連のない単語を次々に思い浮かべていく方法です。例えば、「りんご」「ランタン」「波」のような言葉です。Shuffleep では、アプリが単語を選んでゆっくり読み上げ、画面にも一語ずつ表示します。</p>
+    <p class="quiet">ランダムな単語の読み上げを聞いたり、画面に次々と現れる単語をぼんやり眺めたりしながら、考えごとから離れるきっかけにします。</p>
+    <p class="source">認知シャッフル睡眠法（Cognitive Shuffle）は、カナダのサイモン・フレーザー大学の Luc Beaudoin（リュック・ボードワン）氏が提唱した方法です。Shuffleep はこの方法を参考に独自に作ったアプリです。提唱者や関連団体とは提携しておらず、公認・監修も受けていません。</p>
+  </div>
+</section>
+
+<section class="sec" id="flow" aria-labelledby="h-flow">
+  <div class="split split--wide-fig">
+    <div>
+      <h2 id="h-flow">セッションの流れ</h2>
+      <ol class="timeline">
+        <li>
+          <span class="node" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></span>
+          <h3><span class="num" aria-hidden="true">1</span><wbr aria-hidden="true">メディテーション</h3>
+          <p>呼吸の誘導などの短いナレーションで、眠る準備をします。</p>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg></span>
+          <h3><span class="num" aria-hidden="true">2</span><wbr aria-hidden="true">ガイド音声</h3>
+          <p>シャッフルが始まる前に、やり方を短く案内します。</p>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h3.5c2 0 3.2 1 4.3 2.6l2.4 4.8c1.1 1.6 2.3 2.6 4.3 2.6H21M3 17h3.5c1.4 0 2.4-.5 3.2-1.4M14.3 8.4c.8-.9 1.8-1.4 3.2-1.4H21M18 4l3 3-3 3M18 14l3 3-3 3"/></svg></span>
+          <h3><span class="num" aria-hidden="true">3</span><wbr aria-hidden="true">ワード<wbr aria-hidden="true">シャッフル</h3>
+          <p>テーマの単語を、一定の間隔でひとつずつ読み上げます。</p>
+        </li>
+        <li>
+          <span class="node" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></svg></span>
+          <h3>タイマーで終わる</h3>
+          <p>既定は 20 分で、15〜120 分から選べます。終わるときは音がゆっくり小さくなって止まります。</p>
+        </li>
+      </ol>
+      <p class="after-flow">メディテーションとワードシャッフルは、どちらか一方だけでも使えます（どちらか 1 つはオンにします）。組んだセッションは、次の夜もそのまま使えます。</p>
+    </div>
+    <div class="figs">
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/03-home-640.webp" srcset="/assets/shuffleep/lp/img/ja/03-home-360.webp 360w, /assets/shuffleep/lp/img/ja/03-home-640.webp 640w" sizes="(min-width: 960px) 202px, (min-width: 760px) 142px, 44vw" width="640" height="1315" loading="lazy" alt="ホーム画面。中央に「開始」のボタン、その下にメディテーション・ガイド・シャッフルの 3 つの段階が並ぶ">
+        <figcaption>開始を押して、あとは聞くだけ</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/05-session-settings-640.webp" srcset="/assets/shuffleep/lp/img/ja/05-session-settings-360.webp 360w, /assets/shuffleep/lp/img/ja/05-session-settings-640.webp 640w" sizes="(min-width: 960px) 202px, (min-width: 760px) 142px, 44vw" width="640" height="1315" loading="lazy" alt="セッション設定の画面。メディテーション、ガイド、シャッフルの順に並び、ガイド音声とワードシャッフルのオンとオフを切り替えられる">
+        <figcaption>眠る前の流れを、自分で組む</figcaption>
+      </figure>
+    </div>
+  </div>
+  <figure class="teaser" id="experience-video">
+    <figcaption><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg><span>再生すると音が出ます（約&nbsp;30&nbsp;秒）。</span></figcaption>
+    <video src="/assets/shuffleep/lp/video/shuffleep-promo-ja.mp4?v=8b5ce5d457b3" poster="/assets/shuffleep/lp/video/shuffleep-promo-ja-poster-720.webp?v=8123b645abbc" width="1080" height="1920" controls playsinline preload="none" aria-label="Shuffleep を使っているところの動画"></video>
+  </figure>
+</section>
+<section class="sec" id="meditation" aria-labelledby="h-meditation">
+  <div class="split">
+    <div class="prose">
+      <h2 id="h-meditation">メディテーション<wbr aria-hidden="true">と<wbr aria-hidden="true">ナレーションの声</h2>
+      <dl class="features features--plain">
+        <div><dt>クイック導入</dt><dd>短い呼吸誘導で始めます。無料版で使えます。</dd></div>
+        <div><dt>呼吸法<span class="tag">Premium</span></dt><dd>ゆっくりとした深い呼吸の誘導です。標準と長めの 2 つの長さがあります。</dd></div>
+        <div><dt>ボディスキャン<span class="tag">Premium</span></dt><dd>体の各部位へ順に意識を向けます。標準と長めの 2 つの長さがあります。</dd></div>
+        <div><dt>なし</dt><dd>メディテーションを省いて、シャッフルから始めます。</dd></div>
+      </dl>
+      <p class="quiet after-list">ナレーションの声は、女性と男性の声から選べます。</p>
+    </div>
+    <div class="figs figs--one">
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/04-meditation-library-640.webp" srcset="/assets/shuffleep/lp/img/ja/04-meditation-library-360.webp 360w, /assets/shuffleep/lp/img/ja/04-meditation-library-640.webp 640w" sizes="(min-width: 760px) 250px, 200px" width="640" height="1315" loading="lazy" alt="メディテーションと音声の画面。ナレーションの声の選択と、クイック導入・呼吸法・ボディスキャンの一覧">
+        <figcaption>メディテーションと音声を選べる</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="themes" aria-labelledby="h-themes">
+  <div class="split split--fig-left">
+    <div>
+      <h2 id="h-themes">テーマと音</h2>
+      <p class="prose">テーマごとにワードセット・環境音・ビジュアル・音楽の組み合わせがあり、それぞれを入れ替えられます。</p>
+      <ul class="themes">
+        <li>雨のテラス</li>
+        <li>星空の焚き火</li>
+        <li>蛍の夜</li>
+        <li>海の子守唄</li>
+        <li>森のそよ風</li>
+        <li>自分で組み合わせる「カスタム」のテーマもあります。</li>
+      </ul>
+      <a class="badge badge--after" href="https://play.google.com/store/apps/details?id=com.shinohara.shuffleep&amp;referrer=utm_source%3Dlp%26utm_campaign%3Dlaunch"><img src="/assets/shuffleep/lp/img/badge-google-play-ja.png" alt="Shuffleep のストアページを開く" width="646" height="192" loading="lazy"></a>
+    </div>
+    <div class="figs figs--one">
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/07-theme-640.webp" srcset="/assets/shuffleep/lp/img/ja/07-theme-360.webp 360w, /assets/shuffleep/lp/img/ja/07-theme-640.webp 640w" sizes="(min-width: 760px) 250px, 200px" width="640" height="1315" loading="lazy" alt="テーマ設定の画面。森のそよ風が選ばれ、ワードセット・環境音・音楽・ビジュアルのタブが並ぶ">
+        <figcaption>単語と音と景色を、テーマで選ぶ</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--features" id="features" aria-labelledby="h-features">
+  <h2 id="h-features">そのほかの機能</h2>
+  <dl class="features">
+    <div><dt>環境音</dt><dd>雨音・焚き火の音・虫の音・波の音・森の音の 5 種類。「1/f ゆらぎ」を取り入れて作った音を、声の後ろで静かに流します。</dd></div>
+    <div><dt>ビジュアル</dt><dd>雨・焚き火・蛍・波・落ち葉の、ゆっくり動く景色。</dd></div>
+    <div><dt>音楽</dt><dd>声と環境音に重ねて流します。無料版では「月明かり」、Premium ではほかに 3 曲を使えます。</dd></div>
+    <div><dt>鳴らす区間</dt><dd>環境音と音楽を、セッション全体・メディテーションの間だけ・シャッフルの間だけから選べます。</dd></div>
+    <div><dt>試聴</dt><dd>始める前に、声・環境音・音楽の重なりを試聴できます。</dd></div>
+    <div><dt>音量</dt><dd>全体の音量と、声・環境音・音楽それぞれの音量を調整できます。</dd></div>
+    <div><dt>単語の間隔と速度</dt><dd>単語を読み上げる間隔と、再生速度を調整できます。</dd></div>
+    <div><dt>バックグラウンド<wbr aria-hidden="true">再生</dt><dd>設定をオンにすると、画面を消してもセッションを再生できます（端末の電池最適化の設定によっては止まることがあります）。</dd></div>
+  </dl>
+</section>
+
+<section class="sec" id="premium" aria-labelledby="h-premium">
+  <div class="split split--price">
+    <div class="price-compare">
+      <h2 id="h-premium">無料版と Premium</h2>
+      <table class="compare">
+        <thead><tr><th scope="col"><span class="vh">機能</span></th><th scope="col">無料版</th><th scope="col">Premium</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">テーマ・<wbr aria-hidden="true">環境音・<wbr aria-hidden="true">ビジュアル</th><td>すべて</td><td>すべて</td></tr>
+          <tr><th scope="row">メディテーション</th><td>クイック<wbr aria-hidden="true">導入</td><td>すべて</td></tr>
+          <tr><th scope="row">音楽</th><td>月明かり</td><td>すべて</td></tr>
+          <tr><th scope="row">カスタム<wbr aria-hidden="true">ワードセット</th><td>使え<wbr aria-hidden="true">ません</td><td>使え<wbr aria-hidden="true">ます</td></tr>
+          <tr><th scope="row">広告</th><td>表示あり</td><td>表示なし</td></tr>
+        </tbody>
+      </table>
+      <p class="table-note">カスタムワードセットでは、自分で選んだ単語でシャッフルできます。テーマに入っていない追加の単語も使えます。</p>
+    </div>
+    <div class="figs figs--one">
+      <figure class="shot">
+        <img src="/assets/shuffleep/lp/img/ja/06-custom-word-set-640.webp" srcset="/assets/shuffleep/lp/img/ja/06-custom-word-set-360.webp 360w, /assets/shuffleep/lp/img/ja/06-custom-word-set-640.webp 640w" sizes="(min-width: 760px) 250px, 200px" width="640" height="1315" loading="lazy" alt="カスタムワードセット「森のことば」の編集画面。単語の一覧と追加ボタンが並ぶ">
+        <figcaption>カスタム<wbr aria-hidden="true">ワードセット<wbr aria-hidden="true">を作れる</figcaption>
+      </figure>
+    </div>
+    <div class="price-plans">
+      <h3 class="plus-title">Premium の料金</h3>
+      <dl class="prices">
+        <div><dt>月額プラン<span class="cycle">1 か月ごとに自動更新</span></dt><dd>480 円<small>（税込）</small></dd></div>
+        <div><dt>年額プラン<span class="cycle">1 年ごとに自動更新</span></dt><dd>2,880 円<small>（税込）</small><span class="per">（月あたり 240 円）</span></dd></div>
+      </dl>
+      <ul class="terms-key">
+        <li>上記は日本国内の販売価格です。日本国外のストアでは現地通貨建ての価格が適用され、実際の請求額は各ストアの表示によります。</li>
+        <li>無料体験期間は設けていません。</li>
+        <li>申し込み確定時に課金され、以後は解約するまで、月額プランは 1 か月ごと、年額プランは 1 年ごとに自動更新されます。</li>
+        <li>次回の更新を止めるには、ストアの定期購入の管理画面（プロフィールアイコン &gt; お支払いと定期購入 &gt; 定期購入）から、次回の更新の前に解約してください。</li>
+        <li>アプリのアンインストールやデータの削除では解約されません。</li>
+        <li>役務の性質上、通常の購入後の返品・途中解約の日割り返金は原則として行いません。ただし、ストアの返金制度、適用法令に基づく取消し・解除・返金等は妨げられません。</li>
+        <li>事業者: TO Apps（個人事業者）。所在地は<a href="https://toapps.dev/ja/sct.html">特定商取引法に基づく表示</a>に記載しています。氏名・電話番号は、請求があった場合、電子メールにより遅滞なく提供します（請求先: <a href="mailto:contact@toapps.dev">contact@toapps.dev</a>）。</li>
+      </ul>
+      <ul class="notes">
+        <li>解約後も、支払い済みの期間の終わりまで Premium を使えます。</li>
+        <li>購入の確認後、すぐにアプリ内の Premium 機能が有効になります。決済はストアを通じて行われます。</li>
+        <li>アプリのダウンロード・音源のダウンロード・コンテンツの利用に必要な通信料は、お客様のご負担となります。Premium の音声は、使う前にダウンロードします（インターネット接続が必要です）。</li>
+        <li id="requirements">対応端末の OS は 7.0 以降（推奨は 13 以降）です。購入前に、ストアページでお使いの端末が対応しているかご確認ください。詳しくは、<a href="https://toapps.dev/ja/sct.html">特定商取引法に基づく表示</a>の「動作環境」をご覧ください。</li>
+      </ul>
+      <a class="badge badge--after" href="https://play.google.com/store/apps/details?id=com.shinohara.shuffleep&amp;referrer=utm_source%3Dlp%26utm_campaign%3Dlaunch"><img src="/assets/shuffleep/lp/img/badge-google-play-ja.png" alt="Shuffleep のストアページを開く" width="646" height="192" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--aside" id="faq" aria-labelledby="h-faq">
+  <h2 id="h-faq">よくある質問</h2>
+  <div class="faq">
+    <details><summary>無料でどこまで使えますか？</summary><p>無料でダウンロードして、5 つのテーマ、環境音とビジュアル、メディテーションの「クイック導入」、音楽の「月明かり」、ワードシャッフルを使えます。無料版では広告が表示されます（セッションの再生中には表示しません）。</p></details>
+    <details><summary>解約するには？</summary><p>ストアの定期購入の管理画面（プロフィールアイコン &gt; お支払いと定期購入 &gt; 定期購入）から、次回の更新の前に解約してください。アプリのアンインストールやデータの削除では解約されません。解約後も、支払い済みの期間の終わりまで Premium を使えます。</p></details>
+    <details><summary>アカウントの登録は必要ですか？</summary><p>要りません。アプリで取り扱う情報は、<a href="https://toapps.dev/shuffleep/ja/privacy.html">プライバシーポリシー</a>に記載しています。</p></details>
+    <details><summary>画面を消しても聞けますか？</summary><p>設定でバックグラウンド再生をオンにすると、画面を消してもセッションを再生できます。端末の電池最適化の設定によっては止まることがあります。</p></details>
+    <details><summary>どの端末で使えますか？</summary><p>日本、米国、オーストラリア、ニュージーランド、シンガポールで配信しています。iPhone・iPad には対応していません。お使いの端末で利用できるかは、<a href="#requirements">動作環境</a>をご確認ください。</p></details>
+    <details><summary>音声の言語は？</summary><p>アプリの表示は日本語と英語に対応しています。音声（メディテーションのナレーション、ガイド音声、単語の読み上げ）は、日本語とアメリカ英語のみです。イギリス英語・オーストラリア英語などは提供していません。メディテーションとガイド音声、テーマの単語は表示の言語に連動し、日本語の表示では日本語、英語の表示ではアメリカ英語になります。カスタムワードセットでは、表示の言語と異なる言語の単語が読み上げられることがあります。</p></details>
+    <details><summary>問い合わせ<wbr aria-hidden="true">先は？</summary><p><a href="mailto:contact@toapps.dev">contact@toapps.dev</a> までメールでお問い合わせください。</p></details>
+  </div>
+</section>
+
+<section class="sec sec--aside notice" aria-labelledby="h-notice">
+  <h2 id="h-notice">医療に関するご注意</h2>
+  <p>Shuffleep はリラックスと眠る前の準備を目的としたアプリです。医療機器ではなく、疾病や医学的な状態の診断・治療・治癒・予防を目的としていません。睡眠や心身の状態について気になることがある場合は、医師などの専門家に相談してください。運転中など、眠ってしまうと危険な場面では使用しないでください。</p>
+</section>
+
+<div class="closing">
+  <a class="brand" href="/shuffleep/"><img src="/assets/shuffleep/lp/img/icon-96.png" alt="" width="96" height="96" loading="lazy">Shuffleep</a>
+  <p>眠る前の<wbr aria-hidden="true">ひとときに。</p>
+  <a class="badge" href="https://play.google.com/store/apps/details?id=com.shinohara.shuffleep&amp;referrer=utm_source%3Dlp%26utm_campaign%3Dlaunch"><img src="/assets/shuffleep/lp/img/badge-google-play-ja.png" alt="Shuffleep のストアページを開く" width="646" height="192" loading="lazy"></a>
+</div>
+</main>
+
+<footer class="site-foot">
+  <nav aria-label="法務文書とお問い合わせ">
+    <ul>
+      <li><a href="https://toapps.dev/shuffleep/ja/terms.html">利用規約</a></li>
+      <li><a href="https://toapps.dev/shuffleep/ja/privacy.html">プライバシーポリシー</a></li>
+      <li><a href="https://toapps.dev/ja/sct.html">特定商取引法に基づく表示</a></li>
+      <li><a href="https://toapps.dev/shuffleep/ja/licenses.html">オープンソースライセンス</a></li>
+      <li><a href="https://toapps.dev/shuffleep/licenses-google-sdk.html">SDK のライセンスと第三者表示</a></li>
+      <li><a href="mailto:contact@toapps.dev">お問い合わせ（contact@toapps.dev）</a></li>
+      <li><a href="https://toapps.dev/">TO Apps</a></li>
+      <li><a href="/shuffleep/en/" hreflang="en" lang="en">English</a></li>
+    </ul>
+  </nav>
+  <div class="foot-rule">
+    <p>法務文書は、各言語版に齟齬がある場合は日本語版を正本とします。</p>
+    <p>Google Play および Google Play ロゴは Google LLC の商標です。</p>
+    <p>このページは Cookie やアクセス解析を使っていません。ページは GitHub Pages で配信しており、GitHub がアクセスの情報を取得する場合があります（<a href="https://docs.github.com/ja/site-policy/privacy-policies/github-general-privacy-statement">GitHub のプライバシーステートメント</a>）。</p>
+    <p>© 2026 TO Apps</p>
+  </div>
+</footer>
+</body>
+</html>
